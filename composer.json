@@ -1,0 +1,40 @@
+{
+    "name": "brdev/framework",
+    "type": "project",
+    "description": "The BRdev Framework, created to implements projects the big value",
+    "keywords": ["framework", "coffecode"],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Brendo O O santos",
+        "email": "brendo.dev@outlook.com",
+        "role": "Developer"
+      }
+    ],
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {
+          "App\\": "app/"
+        },
+        "files": [
+            "app/Support/Config.php",
+            "app/Support/Helpers.php"
+        ]   
+    },
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": ">=8.0",
+        "brdev/router": "^1.2",
+        "brdev/sessions": "^1.0",
+        "brdev/cookie": "^1.0",
+        "jenssegers/blade": "^1.4",
+        "coffeecode/optimizer": "^2.1",
+        "coffeecode/datalayer": "^2.0",
+        "filp/whoops": "^2.15",
+        "symfony/var-dumper": "^6.2"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
