@@ -4,6 +4,11 @@ use App\Support\Env;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
+// has .env else copy .env.exemple
+if (!file_exists(__DIR__ . '/../../.env')) {
+    copy(__DIR__ . '/../../.env.exemple', __DIR__ . '/../../.env');
+}
+
 $whoops = new Run();
 $whoops->pushHandler(new PrettyPageHandler);
 $whoops->register();

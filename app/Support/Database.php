@@ -1,6 +1,9 @@
 <?php
 
+namespace App\Support;
 
+use Exception;
+use mysqli;
 
 class Database
 {
