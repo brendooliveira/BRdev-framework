@@ -5,6 +5,11 @@ if (strpos(url(), "localhost")) {
      */
     $minCSS = new MatthiasMullie\Minify\CSS();
 
+
+    if (!is_dir(__DIR__ . "/../../../themes/assets/css")) {
+        mkdir(__DIR__ . "/../../../themes/assets/css");
+    }
+
     //theme CSS
     $cssDir = scandir(__DIR__ . "/../../../themes/assets/css");
     foreach ($cssDir as $css) {
@@ -12,6 +17,11 @@ if (strpos(url(), "localhost")) {
         if (is_file($cssFile) && pathinfo($cssFile)['extension'] == "css") {
             $minCSS->add($cssFile);
         }
+    }
+
+
+    if (!is_dir(__DIR__ . "/../../../public/assets/css")) {
+        mkdir(__DIR__ . "/../../../public/assets/css");
     }
 
     //Minify CSS
@@ -22,6 +32,10 @@ if (strpos(url(), "localhost")) {
      */
     $minJS = new MatthiasMullie\Minify\JS();
 
+    if (!is_dir(__DIR__ . "/../../../themes/assets/js")) {
+        mkdir(__DIR__ . "/../../../themes/assets/js");
+    }
+
     //theme CSS
     $jsDir = scandir(__DIR__ . "/../../../themes/assets/js");
     foreach ($jsDir as $js) {
@@ -29,6 +43,10 @@ if (strpos(url(), "localhost")) {
         if (is_file($jsFile) && pathinfo($jsFile)['extension'] == "js") {
             $minJS->add($jsFile);
         }
+    }
+
+    if (!is_dir(__DIR__ . "/../../../public/assets/js")) {
+        mkdir(__DIR__ . "/../../../public/assets/js");
     }
 
     //Minify JS
