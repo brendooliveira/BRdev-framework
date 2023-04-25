@@ -38,7 +38,7 @@ class User extends Database
     public function exec()
     {
         $this->created();
-        $tableName = 'users';
+        $tableName = "users";
 
 
         $values = [
