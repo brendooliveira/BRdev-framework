@@ -50,7 +50,7 @@ define("CONF_PASSWD_OPTION", ["cost" => 10]);
 /**
  * UPLOAD
  */
-define("CONF_UPLOAD_DIR", "public");
+define("CONF_UPLOAD_DIR", "public/storage");
 define("CONF_UPLOAD_IMAGE_DIR", "images");
 define("CONF_UPLOAD_FILE_DIR", "files");
 define("CONF_UPLOAD_MEDIA_DIR", "medias");

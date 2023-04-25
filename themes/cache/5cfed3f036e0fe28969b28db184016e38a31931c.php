@@ -7,7 +7,7 @@
     <?= $head ?>
     <link rel="stylesheet" href="<?php echo e(assets("/assets/css/styles.css")); ?>">
 </head>
-<body>
+<body class="bg-dark">
 
     <?php echo $__env->yieldContent('content'); ?>
 

@@ -32,11 +32,9 @@ Criação de Tabelas
 Para criar tabelas, utilize o exemplo da classe User.php na pasta database/tables.
 
 Configuração
-Configure sua estrutura no arquivo .env. Durante a instalação, não é necessário criar um novo arquivo .env, pois ele será criado automaticamente.
-
-Arquivos Estáticos (CSS, JS, imagens)
-Armazene seus arquivos estáticos (CSS, JS, imagens) na pasta public. Utilize o método assets() para acessar os arquivos dessa pasta:
+Configure sua estrutura no arquivo .env Durante a instalação, não é necessário criar um novo arquivo .env, pois ele será criado automaticamente.
 
 
-assets('css/style.css');
+assets('assets/css/styles.css');
+assets('assets/js/scripts.js');
 Com o BRDEV-FRAMEWORK, você terá uma estrutura simples e eficiente para desenvolver suas aplicações PHP de maneira rápida e fácil.
