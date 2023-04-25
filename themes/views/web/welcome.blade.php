@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <h2>Brdev Framework.</h2>
-                <p>version <b>1.0</b> PHP {{ phpversion() }}</p>
+                <p>version <b>1.1</b> PHP {{ phpversion() }}</p>
             </div>
         </div>
     </div>
