@@ -83,7 +83,7 @@ function passwd_rehash(string $hash): bool
  */
 function envget(string $key, ?string $default = "default"): string
 {
-    if(empty($_ENV[$key])){
+    if(!empty($_ENV[$key])){
         return $_ENV[$key];
     }
 

@@ -17,8 +17,8 @@ class Web extends Controller
     public function home()
     {
         $head = $this->seo->optimize(
-            $_ENV["CONF_TITLE"] . " | HOME",
-            $_ENV["CONF_SUBTITLE"],
+            envget("CONF_TITLE") . " | HOME",
+            envget("CONF_SUBTITLE"),
             url("/"),
             "img"
         )->render();
@@ -28,18 +28,4 @@ class Web extends Controller
         ]);
     }
 
-    public function error($data)
-    {
-        $head = $this->seo->optimize(
-            $_ENV["CONF_TITLE"] . " | ERROR",
-            $_ENV["CONF_SUBTITLE"],
-            url("/error/" . $data["code"]),
-            "img"
-        )->render();
-
-        view('web.error', [
-            "head" => $head,
-            "code" => $data["code"]
-        ]);
-    }
 }

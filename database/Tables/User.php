@@ -9,7 +9,7 @@ class User extends Database
 
     public function __construct()
     {
-        parent::__construct($_ENV["CONF_DB_NAME"]);
+        parent::__construct(envget("CONF_DB_NAME"));
     }
 
     public function created()
