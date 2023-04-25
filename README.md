@@ -14,9 +14,7 @@ Template View Blade
 Para utilizar a view, chame a função view('file'). Caso queira passar parâmetros, utilize a seguinte sintaxe:
 
 ```php
-
 view('file', ['text' => 'Hello']);
-
 ```
 Controller
 O framework oferece suporte para Controllers, facilitando a organização e a lógica da aplicação.
@@ -28,9 +26,7 @@ Criação de Banco de Dados
 Para criar um banco de dados com apenas um comando, execute:
 
 ```bash
-
 php database/send.php
-
 ```
 Criação de Tabelas
 Para criar tabelas, utilize o exemplo da classe User.php na pasta database/tables.
