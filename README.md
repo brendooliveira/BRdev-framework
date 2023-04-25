@@ -37,7 +37,6 @@ Configure sua estrutura no arquivo .env. Durante a instalação, não é necess�
 Arquivos Estáticos (CSS, JS, imagens)
 Armazene seus arquivos estáticos (CSS, JS, imagens) na pasta public. Utilize o método assets() para acessar os arquivos dessa pasta:
 
-php
-Copy code
+
 assets('css/style.css');
 Com o BRDEV-FRAMEWORK, você terá uma estrutura simples e eficiente para desenvolver suas aplicações PHP de maneira rápida e fácil.
