@@ -37,4 +37,7 @@ Configure sua estrutura no arquivo .env Durante a instalação, não é necessá
 
 assets('assets/css/styles.css');
 assets('assets/js/scripts.js');
+
+seus arquivos js e css, crie em theme/assets/js ou theme/assets/css
+os arquivos são minificados automatico e e ficam em public/assets 
 Com o BRDEV-FRAMEWORK, você terá uma estrutura simples e eficiente para desenvolver suas aplicações PHP de maneira rápida e fácil.
