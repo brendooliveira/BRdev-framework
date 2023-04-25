@@ -33,9 +33,12 @@
         "jenssegers/blade": "^1.4",
         "coffeecode/optimizer": "^2.1",
         "coffeecode/datalayer": "^2.0",
+        "coffeecode/uploader": "2.*",
+        "coffeecode/cropper": "2.*",
         "filp/whoops": "^2.15",
         "symfony/var-dumper": "^6.2",
-        "phpmailer/phpmailer": "^6.8"
+        "phpmailer/phpmailer": "^6.8",
+        "aws/aws-sdk-php": "^3.246"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

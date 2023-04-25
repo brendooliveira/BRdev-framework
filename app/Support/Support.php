@@ -24,7 +24,7 @@ function url(string $path = null): string
  * @param string $path
  * @return string
  */
-function assets(string $path = null): string 
+function assets(string $path = null): string
 {
     return url("/public/$path");
 }
@@ -32,7 +32,7 @@ function assets(string $path = null): string
 function view(string $view, array $data = [])
 {
     $v = new Jenssegers\Blade\Blade("themes/views", "themes/cache");
-    echo $v->render($view,$data);
+    echo $v->render($view, $data);
     return;
 }
 
@@ -83,9 +83,46 @@ function passwd_rehash(string $hash): bool
  */
 function envget(string $key, ?string $default = "default"): string
 {
-    if(!empty($_ENV[$key])){
+    if (!empty($_ENV[$key])) {
         return $_ENV[$key];
     }
 
     return $default;
+}
+
+/**
+ * @param string $image
+ * @param int $width
+ * @param int|null $height
+ * @return string
+ */
+function image(?string $image, int $width, int $height = null): ?string
+{
+    if ($image) {
+        return assets() . "/" . (new \App\Support\Thumb())->make($image, $width, $height);
+    }
+
+    return null;
+}
+
+function fileS3(string $file): string
+{
+    return envget("CONF_AWS_PATH") . "/$file";
+}
+
+/**
+ * Gera um slug amigável para URL.
+ *
+ * @param string $string A string a ser convertida em slug.
+ * @param string $delimiter O delimitador para substituir os espaços e caracteres especiais. (Opcional, padrão: '-')
+ * @return string O slug gerado.
+ */
+function str_slug(string $string, string $delimiter = '-'): string
+{
+    $slug = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $string);
+    $slug = preg_replace('/[^a-zA-Z0-9-]+/', $delimiter, $slug);
+    $slug = strtolower(trim($slug, $delimiter));
+    $slug = preg_replace('/-{2,}/', $delimiter, $slug);
+
+    return $slug;
 }
