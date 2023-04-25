@@ -15,7 +15,7 @@ class Database {
     }
 
     public function createDatabase(string $dbName) {
-        $sql = "CREATE DATABASE IF NOT EXISTS `$dbName`";
+        $sql = "CREATE DATABASE IF NOT EXISTS `$dbName` CHARACTER SET utf8 COLLATE utf8_general_ci";
 
         try {
             $this->pdo->exec($sql);
@@ -70,7 +70,7 @@ class Database {
         }
 
         $columnDefinitionsString = implode(", ", $columnDefinitions);
-        $sql = "CREATE TABLE IF NOT EXISTS `$dbName`.`$tableName` ($columnDefinitionsString)";
+        $sql = "CREATE TABLE IF NOT EXISTS `$dbName`.`$tableName` ($columnDefinitionsString) CHARACTER SET utf8 COLLATE utf8_general_ci";
 
         try {
             $this->pdo->exec($sql);

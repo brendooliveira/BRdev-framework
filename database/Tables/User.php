@@ -42,10 +42,10 @@ class User extends Database
 
 
         $values = [
-            'first_name' => 'João',
-            'last_name' => 'Silva',
-            'email' => 'joao.silva@email.com',
-            'password' => password_hash('senha123', PASSWORD_DEFAULT),
+            "first_name" => "João",
+            "last_name" => "Silva",
+            "email" => "joao.silva@email.com",
+            "password" => passwd("senha123"),
         ];
 
 
