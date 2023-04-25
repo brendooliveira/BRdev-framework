@@ -5,20 +5,22 @@ namespace Database\Tables;
 use App\Support\Database;
 use PDO;
 
-class User extends Database {
-    
-    public function __construct(PDO $pdo) {
-        parent::__construct($pdo, $_ENV["CONF_DB_NAME"]);
+class User extends Database
+{
+
+    public function __construct()
+    {
+        parent::__construct($_ENV["CONF_DB_NAME"]);
     }
 
-    public function created() 
+    public function created()
     {
         $tableName = 'users';
         $columns = [
-            "id"            =>  "int(11) UNSIGNED NOT NULL",
+            "id"            =>  "int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL",
             "first_name"    =>  "varchar(255) NOT NULL DEFAULT ''",
             "last_name"     =>  "varchar(255) NOT NULL DEFAULT ''",
-            "email"         =>  "varchar(255) NOT NULL DEFAULT ''",
+            "email"         =>  "varchar(255) NOT NULL UNIQUE",
             "password"      =>  "varchar(255) NOT NULL DEFAULT ''",
             "level"         =>  "int(11) NOT NULL DEFAULT 1",
             "forget"        =>  "varchar(255) DEFAULT NULL",
@@ -34,14 +36,12 @@ class User extends Database {
         parent::createTable($this->dbName, $tableName, $columns);
     }
 
-    public function run(array $values) {
-        $this->created();
-        $tableName = 'users';
-        parent::insertValues($this->dbName, $tableName, $values);
-    }
-
     public function exec()
     {
+        $this->created();
+        $tableName = 'users';
+
+
         $values = [
             'first_name' => 'João',
             'last_name' => 'Silva',
@@ -49,6 +49,7 @@ class User extends Database {
             'password' => password_hash('senha123', PASSWORD_DEFAULT),
         ];
 
-        $this->run($values);
+
+        parent::insertValues($this->dbName, $tableName, $values);
     }
 }

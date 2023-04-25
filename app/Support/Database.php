@@ -9,8 +9,8 @@ class Database {
     private $pdo;
     protected $dbName;
 
-    public function __construct(PDO $pdo, string $dbName) {
-        $this->pdo = $pdo;
+    public function __construct(string $dbName) {
+        $this->pdo = new PDO($_ENV["CONF_DB_DRIVER"].':host='.$_ENV["CONF_DB_HOST"], $_ENV["CONF_DB_USER"], $_ENV["CONF_DB_PSWD"]);
         $this->dbName = $dbName;
     }
 
