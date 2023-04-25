@@ -14,7 +14,7 @@ class Queue extends Database
 
     public function created()
     {
-        $tableName = 'mail_queue';
+        $tableName = "mail_queue";
         $columns = [
             "id"                =>  "int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL",
             "subject"           =>  "varchar(255) NOT NULL DEFAULT ''",

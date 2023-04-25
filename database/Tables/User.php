@@ -14,7 +14,7 @@ class User extends Database
 
     public function created()
     {
-        $tableName = 'users';
+        $tableName = "users";
         $columns = [
             "id"            =>  "int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL",
             "first_name"    =>  "varchar(255) NOT NULL DEFAULT ''",
