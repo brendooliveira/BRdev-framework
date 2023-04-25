@@ -4,7 +4,7 @@ namespace Database\Tables;
 
 use App\Support\Database;
 
-class User extends Database
+class Queue extends Database
 {
 
     public function __construct()
