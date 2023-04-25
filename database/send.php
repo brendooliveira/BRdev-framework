@@ -1,16 +1,11 @@
 <?php
 
+use Database\Tables\User;
+
 require __DIR__."/../vendor/autoload.php";
 
-$host = $_ENV["CONF_DB_HOST"];
-$username = $_ENV["CONF_DB_USER"];
-$password = $_ENV["CONF_DB_PSWD"];
-$newDatabaseName = $_ENV["CONF_DB_NAME"];
-$filePath = __DIR__."/db.sql";
+$pdo = new PDO($_ENV["CONF_DB_DRIVER"].':host='.$_ENV["CONF_DB_HOST"], $_ENV["CONF_DB_USER"], $_ENV["CONF_DB_PSWD"]);
 
-try {
-    $uploader = new Database($host, $username, $password);
-    $uploader->upload($newDatabaseName, $filePath);
-} catch (Exception $e) {
-    echo "Erro: " . $e->getMessage();
-}
+
+//EXEC CLASS
+(new User($pdo, $_ENV["CONF_DB_NAME"]))->exec();

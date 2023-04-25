@@ -2,60 +2,107 @@
 
 namespace App\Support;
 
-use Exception;
-use mysqli;
+use PDO;
+use PDOException;
 
-class Database
-{
+class Database {
+    private $pdo;
+    protected $dbName;
 
-    private $host;
-    private $username;
-    private $password;
-
-    public function __construct($host, $username, $password)
-    {
-        $this->host = $host;
-        $this->username = $username;
-        $this->password = $password;
+    public function __construct(PDO $pdo, string $dbName) {
+        $this->pdo = $pdo;
+        $this->dbName = $dbName;
     }
 
-    public function upload($newDatabaseName, $filePath)
-    {
-        // Verifique se o arquivo existe
-        if (!file_exists($filePath)) {
-            throw new Exception("Arquivo não encontrado: $filePath");
+    public function createDatabase(string $dbName) {
+        $sql = "CREATE DATABASE IF NOT EXISTS `$dbName`";
+
+        try {
+            $this->pdo->exec($sql);
+            echo "Banco de dados '$dbName' criado com sucesso.\n";
+        } catch (PDOException $e) {
+            echo "Erro ao criar o banco de dados '$dbName': " . $e->getMessage() . "\n";
+        }
+    }
+
+    public function databaseExists(string $dbName): bool {
+        $sql = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = :dbName";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':dbName' => $dbName]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC) !== false;
+        } catch (PDOException $e) {
+            echo "Erro ao verificar a existência do banco de dados '$dbName': " . $e->getMessage() . "\n";
+            return false;
+        }
+    }
+
+    public function tableExists(string $dbName, string $tableName): bool {
+        $sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = :dbName AND TABLE_NAME = :tableName";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([':dbName' => $dbName, ':tableName' => $tableName]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC) !== false;
+        } catch (PDOException $e) {
+            echo "Erro ao verificar a existência da tabela '$tableName' no banco de dados '$dbName': " . $e->getMessage() . "\n";
+            return false;
+        }
+    }
+
+    public function createTable(string $dbName, string $tableName, array $columns) {
+        if (!$this->databaseExists($dbName)) {
+            $this->createDatabase($dbName);
         }
 
-        // Conectar ao servidor de banco de dados
-        $connection = new mysqli($this->host, $this->username, $this->password);
-
-        // Verifique a conexão
-        if ($connection->connect_error) {
-            throw new Exception("Conexão falhou: " . $connection->connect_error);
+        if ($this->tableExists($dbName, $tableName)) {
+            echo "A tabela '$tableName' já existe no banco de dados '$dbName'.\n";
+            return;
         }
 
-        // Criar novo banco de dados
-        $createDbQuery = "CREATE DATABASE IF NOT EXISTS `$newDatabaseName`";
-        if ($connection->query($createDbQuery) !== TRUE) {
-            throw new Exception("Erro ao criar banco de dados: " . $connection->error);
+        $columnDefinitions = [];
+
+        foreach ($columns as $column => $dataType) {
+            $columnDefinitions[] = "`$column` $dataType";
         }
 
-        // Selecionar o novo banco de dados
-        $connection->select_db($newDatabaseName);
+        $columnDefinitionsString = implode(", ", $columnDefinitions);
+        $sql = "CREATE TABLE IF NOT EXISTS `$dbName`.`$tableName` ($columnDefinitionsString)";
 
-        // Ler o conteúdo do arquivo SQL
-        $sqlContent = file_get_contents($filePath);
+        try {
+            $this->pdo->exec($sql);
+            echo "Tabela '$tableName' criada com sucesso no banco de dados '$dbName'.\n";
+        } catch (PDOException $e) {
+            echo "Erro ao criar a tabela '$tableName' no banco de dados '$dbName': " . $e->getMessage() . "\n";
+        }
+    }
 
-        // Executar multiplas consultas SQL
-        if ($connection->multi_query($sqlContent) === TRUE) {
-            while ($connection->next_result()) {;
-            } // Libera resultados extras
-            echo "Banco de dados criado e populado com sucesso!";
-        } else {
-            throw new Exception("Erro ao importar arquivo SQL: " . $connection->error);
+    public function insertValues(string $dbName, string $tableName, array $data) {
+        if (!$this->tableExists($dbName, $tableName)) {
+            echo "A tabela '$tableName' não existe no banco de dados '$dbName'.\n";
+            return;
         }
 
-        // Fechar conexão
-        $connection->close();
+        $columnNames = array_keys($data);
+        $columnPlaceholders = array_map(function ($column) {
+            return ":$column";
+        }, $columnNames);
+
+        $columnsString = implode(', ', $columnNames);
+        $placeholdersString = implode(', ', $columnPlaceholders);
+
+        $sql = "INSERT INTO `$dbName`.`$tableName` ($columnsString) VALUES ($placeholdersString)";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($data);
+            echo "Valores inseridos com sucesso na tabela '$tableName' no banco de dados '$dbName'.\n";
+        } catch (PDOException $e) {
+            echo "Erro ao inserir valores na tabela '$tableName' no banco de dados '$dbName': " . $e->getMessage() . "\n";
+        }
     }
 }
+
