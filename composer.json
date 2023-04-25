@@ -21,7 +21,7 @@
         },
         "files": [
             "app/Support/Config.php",
-            "app/Support/Helpers.php"
+            "app/Support/Support.php"
         ]   
     },
     "require": {
@@ -34,7 +34,8 @@
         "coffeecode/optimizer": "^2.1",
         "coffeecode/datalayer": "^2.0",
         "filp/whoops": "^2.15",
-        "symfony/var-dumper": "^6.2"
+        "symfony/var-dumper": "^6.2",
+        "phpmailer/phpmailer": "^6.8"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

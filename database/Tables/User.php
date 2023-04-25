@@ -3,7 +3,6 @@
 namespace Database\Tables;
 
 use App\Support\Database;
-use PDO;
 
 class User extends Database
 {
