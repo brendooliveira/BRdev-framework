@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Core\Controller;
-use App\Models\User;
 
 class Web extends Controller
 {
@@ -27,10 +26,4 @@ class Web extends Controller
             "head" => $head
         ]);
     }
-
-    public function contact(array $data): void
-    {
-        dd($data);
-    }
-
 }

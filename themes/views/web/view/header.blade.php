@@ -5,7 +5,7 @@
             <div class="col-lg-8">
                 <div class="content_home_body">
                     <h1>Excelência em Soluções Tecnológicas</h1>
-                    <p>Construindo Parcerias Estratégicas e <br> Projetos de Alta Maturidade para Transformar o Mundo Digital desde 2000</p>
+                    <p> PHP {{ phpversion() }}</p>
 
                     <div class="pt-3">
                         <a href="https://wa.me/55" class="btn btn_consulte">Falar agora com um especialista <i class="bi bi-arrow-right"></i></a>

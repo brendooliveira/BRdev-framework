@@ -10,8 +10,8 @@ function url(?string $url = ""): string
     $path = ltrim($url, '/');
 
     return $baseUrl . '/' . $path;
-}
 
+}
 /**
  * @param string $path
  * @return string

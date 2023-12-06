@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
     <div class="ajax_load">
@@ -24,7 +25,6 @@
     
     <div class="ajax_response"></div>
 
-
     <?php echo $__env->yieldContent('content'); ?>
 
     <script src="<?php echo e(assets("assets/js/jquery.min.js")); ?>"></script>
@@ -33,5 +33,7 @@
 
     <script src="<?php echo e(assets("assets/js/scripts.js")); ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script src="<?php echo e(assets("/assets/js/scripts.css")); ?>"></script>
 </body>
 </html><?php /**PATH C:\laragon\www\BRdev-framework\themes\views/web/theme.blade.php ENDPATH**/ ?>
