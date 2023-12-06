@@ -36,6 +36,14 @@ class Env
             $constantValue = trim($value);
 
             //ENV 
+            if($constantValue == "true"){
+                $_ENV[$constantName] = true;
+            }
+
+            if($constantValue == "false"){
+                $_ENV[$constantName] = false;
+            }
+
             $_ENV[$constantName] = $constantValue;
         }
 

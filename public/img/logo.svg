@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 229.1 68.82">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        fill: #f7f7f7;
+        font-family: Montserrat-SemiBold, Montserrat;
+        font-size: 61.72px;
+        font-weight: 600;
+      }
+    </style>
+  </defs>
+  <text class="cls-2" transform="translate(0 52.46)"><tspan x="0" y="0">BRD</tspan><tspan class="cls-1" x="143.06" y="0">E</tspan><tspan x="183.8" y="0">V</tspan></text>
+</svg>

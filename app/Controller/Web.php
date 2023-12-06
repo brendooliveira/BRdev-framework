@@ -14,32 +14,23 @@ class Web extends Controller
         parent::__construct();
     }
 
-    public function home()
+    public function home(): void
     {
         $head = $this->seo->optimize(
-            $_ENV["CONF_TITLE"] . " | HOME",
-            $_ENV["CONF_SUBTITLE"],
+            envget("CONF_TITLE"),
+            envget("CONF_SUBTITLE"),
             url("/"),
-            "img"
+            assets("img/shared.png")
         )->render();
 
-        view('web.welcome', [
+        view('web.home', [
             "head" => $head
         ]);
     }
 
-    public function error($data)
+    public function contact(array $data): void
     {
-        $head = $this->seo->optimize(
-            $_ENV["CONF_TITLE"] . " | ERROR",
-            $_ENV["CONF_SUBTITLE"],
-            url("/error/" . $data["code"]),
-            "img"
-        )->render();
-
-        view('web.error', [
-            "head" => $head,
-            "code" => $data["code"]
-        ]);
+        dd($data);
     }
+
 }

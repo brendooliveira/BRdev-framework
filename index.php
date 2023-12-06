@@ -6,9 +6,10 @@ require __DIR__."/vendor/autoload.php";
 Router::namespace("App\Controller");
 
 Router::get("/","Web@home");
+Router::post("/send","Web@contact");
 
 Router::get("/error/{code}",function ($data) {
-    return view("web.error", ["code" => $data["code"]]);
+    echo url();
 });
 
 Router::dispatch();
